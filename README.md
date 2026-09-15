@@ -149,68 +149,60 @@ NoteSpace/
 ⚙️ Installation & Setup
 
 1. Clone the repository
-git clone https://github.com/saurabh-2414/NoteSpace.git
+   git clone https://github.com/saurabh-2414/NoteSpace.git
 
 2. Navigate to the project
-cd NoteSpace
+   cd NoteSpace
 
 3. Install frontend dependencies
-npm install
+   npm install
 
 4. Install backend dependencies
-cd Backend
-npm install
-cd ..
+   cd Backend
+   npm install
+   cd ..
 
 5. Configure environment variables
-Create a .env file in the project root for the React frontend:
+   Create a .env file in the project root for the React frontend:
 
 REACT_APP_API_URL=http://localhost:5000
 
 Create a .env file inside the Backend folder:
 
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-EMAIL_USER=your_email
-EMAIL_PASSWORD=your_gmail_app_password
-FRONTEND_URL=http://localhost:3000
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- EMAIL_USER=your_email
+- EMAIL_PASSWORD=your_gmail_app_password
+- FRONTEND_URL=http://localhost:3000
 
-Never commit .env files or expose database credentials, JWT secrets, or email app passwords.
+- Never commit .env files or expose database credentials, JWT secrets, or email app passwords.
 
 6. Start the backend
 
-From the project root:
+- From the project root: nodemon Backend/index.js
 
-nodemon Backend/index.js
-
-The backend will run on:
-
-http://localhost:5000
+- The backend will run on: http://localhost:5000
 
 7. Start the frontend
 
-In another terminal:
+- In another terminal: npm start
 
-npm start
-
-The frontend will run on:
-
-http://localhost:3000
+- The frontend will run on: http://localhost:3000
 
 🔐 Environment Variables
 
 Frontend
 
 Variable	                  Description
-REACT_APP_API_URL	        Backend API URL
+- REACT_APP_API_URL	        Backend API URL
 
 Example:
 
-REACT_APP_API_URL=http://localhost:5000
+- REACT_APP_API_URL=http://localhost:5000
 
 Backend
 
-Variable	                      Description
+- Variable	                      Description
 MONGO_URI                   MongoDB connection string
 JWT_SECRET                  Secret used to sign JWT tokens
 EMAIL_USER	                Email address used for password reset
@@ -219,7 +211,7 @@ FRONTEND_URL      	        Frontend URL used in password reset links
 
 🔌 API Information
 
-Authentication APIs
+- Authentication APIs
 Method	             Endpoint	                        Description
 POST	        /api/auth/createuser	            Register a new user
 POST	        /api/auth/login                  	Login user
@@ -227,55 +219,55 @@ POST	        /api/auth/forgotpassword	        Request password reset
 POST        	/api/auth/resetpassword/:token  	Reset password
 GET	            /api/auth/getuser                	Get authenticated user
 
-Notes APIs
+- Notes APIs
 Method	          Endpoint	                        Description
 GET	          /api/notes/fetchallnotes	        Fetch user's notes
 POST	      /api/notes/addnote              	Create a new note
 PUT	          /api/notes/updatenote/:id        	Update a note
 DELETE	      /api/notes/deletenote/:id        	Delete a note
 
-Protected APIs require the JWT token in the request header:
+- Protected APIs require the JWT token in the request header:
 
-auth-token: <your-jwt-token>
+- auth-token: <your-jwt-token>
 
 📸 Screenshots
 
-Home / Notes
+- Home / Notes
 
 ![NoteSpace Home](screenshots/home.png)
 ![NoteSpace Notes](screenshots/notes.png)
 
-Login
+- Login
 
 ![NoteSpace Login](screenshots/login.png)
 
-Signup
+- Signup
 
 ![NoteSpace Signup](screenshots/signup.png)
 
-Add / Edit Note
+- Edit / Update Note
 
 ![NoteSpace UpdateNotes](screenshots/updatenotes.png)
 
-Forgot Password
+- Forgot Password
 
 ![NoteSpace Forget Password](screenshots/forget.png)
 
-Reset Password
+- Reset Password
 
 ![NoteSpace Reset Password](screenshots/reset.png)
 
 🔒 Security
 
-NoteSpace implements several security practices:
+- NoteSpace implements several security practices:
 
-Passwords are hashed using bcrypt
-JWT authentication is used for protected APIs
-Users can access only their own notes
-Password reset tokens expire
-Sensitive environment variables are excluded from Git
-Generic responses are used for password reset requests
-Protected backend routes require authentication
+- Passwords are hashed using bcrypt
+- JWT authentication is used for protected APIs
+- Users can access only their own notes
+- Password reset tokens expire
+- Sensitive environment variables are excluded from Git
+- Generic responses are used for password reset requests
+- Protected backend routes require authentication
 
 🔮 Future Improvements
 
