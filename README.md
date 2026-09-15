@@ -193,7 +193,7 @@ Create a .env file inside the Backend folder:
 
 Frontend
 
-Variable	                  Description
+- Variable	                  Description
 - REACT_APP_API_URL	        Backend API URL
 
 Example:
@@ -203,28 +203,28 @@ Example:
 Backend
 
 - Variable	                      Description
-MONGO_URI                   MongoDB connection string
-JWT_SECRET                  Secret used to sign JWT tokens
-EMAIL_USER	                Email address used for password reset
-EMAIL_PASSWORD	            Gmail App Password
-FRONTEND_URL      	        Frontend URL used in password reset links
+- MONGO_URI                   MongoDB connection string
+- JWT_SECRET                  Secret used to sign JWT tokens
+- EMAIL_USER	               Email address used for password reset
+- EMAIL_PASSWORD	            Gmail App Password
+- FRONTEND_URL      	         Frontend URL used in password reset links
 
 🔌 API Information
 
 - Authentication APIs
-Method	             Endpoint	                        Description
-POST	        /api/auth/createuser	            Register a new user
-POST	        /api/auth/login                  	Login user
-POST	        /api/auth/forgotpassword	        Request password reset
-POST        	/api/auth/resetpassword/:token  	Reset password
-GET	            /api/auth/getuser                	Get authenticated user
+- Method	             Endpoint	                        Description
+- POST	        /api/auth/createuser	            Register a new user
+- POST	        /api/auth/login                  	Login user
+- POST	        /api/auth/forgotpassword	         Request password reset
+- POST        	  /api/auth/resetpassword/:token  	Reset password
+- GET	           /api/auth/getuser                	Get authenticated user
 
 - Notes APIs
-Method	          Endpoint	                        Description
-GET	          /api/notes/fetchallnotes	        Fetch user's notes
-POST	      /api/notes/addnote              	Create a new note
-PUT	          /api/notes/updatenote/:id        	Update a note
-DELETE	      /api/notes/deletenote/:id        	Delete a note
+- Method	          Endpoint	                        Description
+- GET	          /api/notes/fetchallnotes	         Fetch user's notes
+- POST	       /api/notes/addnote              	Create a new note
+- PUT	          /api/notes/updatenote/:id        	Update a note
+- DELETE	       /api/notes/deletenote/:id        	Delete a note
 
 - Protected APIs require the JWT token in the request header:
 
@@ -273,19 +273,19 @@ DELETE	      /api/notes/deletenote/:id        	Delete a note
 
 Possible future improvements include:
 
-Dark mode
-Pagination for notes
-Note sorting and filtering
-Rich text editor
-Note categories
-Pin important notes
-Archive notes
-Profile management
-Better search functionality
-Cloud deployment
-Automated testing
-Rate limiting
-Refresh token authentication
+- Dark mode
+- Pagination for notes
+- Note sorting and filtering
+- Rich text editor
+- Note categories
+- Pin important notes
+- Archive notes
+- Profile management
+- Better search functionality
+- Cloud deployment
+- Automated testing
+- Rate limiting
+- Refresh token authentication
 
 👨‍💻 Author
 
