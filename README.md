@@ -96,6 +96,7 @@ Each user's notes are protected using JWT authentication, ensuring users can acc
 
 ##📂 Project Structure
 
+```text
 NoteSpace/
 │
 ├── Backend/
