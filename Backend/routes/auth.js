@@ -8,10 +8,10 @@ const fetchuser = require("../middleware/fetchuser");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
-const JWT_SECRET = process.env.JWT_SECRET;
-
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
