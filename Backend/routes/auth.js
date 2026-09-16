@@ -1,8 +1,3 @@
-require("dotenv").config({
-  path: "./Backend/.env",
-  quiet: true,
-});
-
 const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
