@@ -8,17 +8,23 @@ const fetchuser = require("../middleware/fetchuser");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
+const JWT_SECRET = process.env.JWT_SECRET;
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: true,
+  secure: false,
+  requireTLS: true,
+  connectionTimeout: 30000,
+  greetingTimeout: 30000,
+  socketTimeout: 30000,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
 });
 
-transporter.verify((error) => {
+transporter.verify((error, success) => {
   if (error) {
     console.error("Email configuration error:", error);
   } else {
