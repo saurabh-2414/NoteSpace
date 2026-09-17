@@ -10,30 +10,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fetchuser = require("../middleware/fetchuser");
 const crypto = require("crypto");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("Email configuration error:", error);
-  } else {
-    console.log("Email server is ready");
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 //ROUTE1 Create a User using: POST "/api/auth/createuser". No login required
 router.post(
@@ -174,53 +155,52 @@ router.post("/forgotpassword", async (req, res) => {
     // Reset link
     const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
     // Send email
-    await transporter.sendMail({
-      from: `"NoteSpace" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: "NoteSpace <onboarding@resend.dev>",
       to: user.email,
       subject: "NoteSpace - Password Reset",
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
-          <h2>NoteSpace Password Reset</h2>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
+      <h2>NoteSpace Password Reset</h2>
 
-          <p>Hello ${user.name},</p>
+      <p>Hello ${user.name},</p>
 
-          <p>
-            We received a request to reset your NoteSpace password.
-          </p>
+      <p>
+        We received a request to reset your NoteSpace password.
+      </p>
 
-          <p>
-            Click the button below to reset your password:
-          </p>
+      <p>
+        Click the button below to reset your password:
+      </p>
 
-          <a
-            href="${resetLink}"
-            style="
-              display: inline-block;
-              padding: 12px 20px;
-              background-color: #212529;
-              color: white;
-              text-decoration: none;
-              border-radius: 6px;
-            "
-          >
-            Reset Password
-          </a>
+      <a
+        href="${resetLink}"
+        style="
+          display: inline-block;
+          padding: 12px 20px;
+          background-color: #212529;
+          color: white;
+          text-decoration: none;
+          border-radius: 6px;
+        "
+      >
+        Reset Password
+      </a>
 
-          <p style="margin-top: 20px;">
-            This link will expire in <strong>15 minutes</strong>.
-          </p>
+      <p style="margin-top: 20px;">
+        This link will expire in <strong>15 minutes</strong>.
+      </p>
 
-          <p>
-            If you didn't request a password reset, you can safely ignore
-            this email.
-          </p>
+      <p>
+        If you didn't request a password reset, you can safely ignore this email.
+      </p>
 
-          <p>
-            Regards,<br>
-            NoteSpace Team
-          </p>
-        </div>
-      `,
+      <p>
+        Regards,<br>
+        NoteSpace Team
+      </p>
+    </div>
+  `,
     });
 
     res.json({
