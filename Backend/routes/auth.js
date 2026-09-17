@@ -1,3 +1,7 @@
+const dns = require("dns");
+
+dns.setDefaultResultOrder("ipv4first");
+
 const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
@@ -12,9 +16,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  requireTLS: true,
+  port: 465,
+  secure: true,
   connectionTimeout: 30000,
   greetingTimeout: 30000,
   socketTimeout: 30000,
